@@ -17,3 +17,11 @@ def load_image(image_path):
     image_tensor = image_tensor.permute(2,0,1)
 
     return image_tensor
+
+def run_inference(model, image_tensor):
+    # Runs a chosen model on a single tensor
+
+    with torch.no_grad():
+        predictions = model([image_tensor])
+
+    return predictions[0]
