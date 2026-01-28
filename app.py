@@ -20,9 +20,8 @@ def select_folder():
     first_image = load_image(image_paths[0])
 
     messagebox.showinfo(
-        "Images Loaded\n"
-        f"found {len(image_paths)} images.\n"
-        f"First image tensor shape:\n[first_image.shape]"
+        "Images Loaded",
+        f"Found {len(image_paths)} images."
     )
 
 root = tk.Tk()
