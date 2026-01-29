@@ -25,3 +25,18 @@ def run_inference(model, image_tensor):
         predictions = model([image_tensor])
 
     return predictions[0]
+
+def filter_predictions(predictions, score_threshold=0.5):
+    # Filter the predictions by a chosen confidence score
+
+    keep = predictions["scores"] >= score_threshold
+
+    filtered = {
+        "boxes": predictions["boxes"][keep],
+        "labels": predictions["labels"][keep],
+        "scores": predictions["scores"][keep],
+        "masks": predictions["masks"][keep]
+    }
+
+    return filtered
+
