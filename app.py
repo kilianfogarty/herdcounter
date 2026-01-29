@@ -4,6 +4,8 @@ from tkinter import messagebox
 
 from utils import get_image_paths
 from inference import load_image
+from model import load_model
+from inference import run_inference
 
 
 def select_folder():
@@ -17,12 +19,17 @@ def select_folder():
         messagebox.showwarning("No Images", "No images found in selected folder.")
         return
     
-    first_image = load_image(image_paths[0])
+    image_tensor = load_image(image_paths[0])
+    predictions = run_inference(model, image_tensor)
+
+    num_objects = len(predictions["scores"])
 
     messagebox.showinfo(
-        "Images Loaded",
-        f"Found {len(image_paths)} images."
+        "Inference Result",
+        f"Found {num_objects} in the first image."
     )
+
+model = load_model()
 
 root = tk.Tk()
 root.title("Herd Counter")
