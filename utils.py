@@ -13,3 +13,7 @@ def get_image_paths(folder_path):
             image_paths.append(full_path)
 
     return image_paths
+
+
+def count_animals(filtered_predictions):
+    return len(filtered_predictions["scores"])
